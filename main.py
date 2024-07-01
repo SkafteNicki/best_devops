@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
-
+print("I don`t know")
 def train_and_evaluate():
     # TODO: add arguments and argument parsing for high-level configuration
 
