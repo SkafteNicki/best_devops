@@ -37,7 +37,7 @@ def train_and_evaluate():
     accuracy = accuracy_score(y_test, y_pred)
     report = classification_report(y_test, y_pred)
 
-    print(f'Accuracy: {accuracy:.2f}')
+    print(f'Accuracy: {accuracy:.3f}')
     print('Classification Report:')
     print(report)
     return accuracy, report
