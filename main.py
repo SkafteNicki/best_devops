@@ -6,6 +6,13 @@ from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
 print("Hello World")
 
+import numpy as np
+
+def add(a: int | float | np.ndarray, b: int | float | np.ndarray) -> int | float | np.ndarray:
+    return a + b
+
+print("SVM model")
+
 def train_and_evaluate():
     # TODO: add arguments and argument parsing for high-level configuration
 
