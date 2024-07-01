@@ -1,0 +1,52 @@
+2024-07-01 15:10:12,260 - INFO - Cross-validation scores: [0.97368421 0.95614035 1.         0.96491228 0.97345133]
+2024-07-01 15:10:12,260 - INFO - Mean cross-validation accuracy: 0.97
+2024-07-01 15:10:12,269 - INFO - Accuracy on test set: 0.98
+2024-07-01 15:10:12,270 - INFO - Classification Report:
+2024-07-01 15:10:12,270 - INFO -               precision    recall  f1-score   support
+
+           0       0.95      1.00      0.98        59
+           1       1.00      0.97      0.99       112
+
+    accuracy                           0.98       171
+   macro avg       0.98      0.99      0.98       171
+weighted avg       0.98      0.98      0.98       171
+
+2024-07-01 15:10:20,398 - INFO - Cross-validation scores: [0.97368421 0.95614035 1.         0.96491228 0.97345133]
+2024-07-01 15:10:20,398 - INFO - Mean cross-validation accuracy: 0.97
+2024-07-01 15:10:20,408 - INFO - Accuracy on test set: 0.98
+2024-07-01 15:10:20,408 - INFO - Classification Report:
+2024-07-01 15:10:20,408 - INFO -               precision    recall  f1-score   support
+
+           0       0.95      1.00      0.98        59
+           1       1.00      0.97      0.99       112
+
+    accuracy                           0.98       171
+   macro avg       0.98      0.99      0.98       171
+weighted avg       0.98      0.98      0.98       171
+
+2024-07-01 15:13:26,069 - INFO - Cross-validation scores: [0.97368421 0.95614035 1.         0.96491228 0.97345133]
+2024-07-01 15:13:26,069 - INFO - Mean cross-validation accuracy: 0.97
+2024-07-01 15:13:26,078 - INFO - Accuracy on test set: 0.98
+2024-07-01 15:13:26,078 - INFO - Classification Report:
+2024-07-01 15:13:26,078 - INFO -               precision    recall  f1-score   support
+
+           0       0.95      1.00      0.98        59
+           1       1.00      0.97      0.99       112
+
+    accuracy                           0.98       171
+   macro avg       0.98      0.99      0.98       171
+weighted avg       0.98      0.98      0.98       171
+
+2024-07-01 15:13:26,111 - INFO - Cross-validation scores: [0.97368421 0.95614035 1.         0.96491228 0.97345133]
+2024-07-01 15:13:26,111 - INFO - Mean cross-validation accuracy: 0.97
+2024-07-01 15:13:26,121 - INFO - Accuracy on test set: 0.98
+2024-07-01 15:13:26,121 - INFO - Classification Report:
+2024-07-01 15:13:26,121 - INFO -               precision    recall  f1-score   support
+
+           0       0.95      1.00      0.98        59
+           1       1.00      0.97      0.99       112
+
+    accuracy                           0.98       171
+   macro avg       0.98      0.99      0.98       171
+weighted avg       0.98      0.98      0.98       171
+
