@@ -4,6 +4,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
+import numpy as np
+
+def add(a: int | float | np.ndarray, b: int | float | np.ndarray) -> int | float | np.ndarray:
+    return a + b
 
 def train_and_evaluate():
     # TODO: add arguments and argument parsing for high-level configuration
@@ -44,3 +48,7 @@ def train_and_evaluate():
 
 if __name__ == "__main__":
     train_and_evaluate()
+
+    print(add(1, 2))
+    print(add(1.5, 2.2))
+    print(add(np.array([1, 2]), np.array([3, 4])))
