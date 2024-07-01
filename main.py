@@ -42,10 +42,12 @@ def train_and_evaluate():
     # TODO: consider using more evaluation metrics
     accuracy = accuracy_score(y_test, y_pred)
     report = classification_report(y_test, y_pred)
+    print("HELLO SATANAS")
 
     print(f'Accuracy: {accuracy:.3f}')
     print('Classification Report:')
     print('Hello')
+    print('Hello, my name is Sandra.')
     print(report)
     return accuracy, report
 
