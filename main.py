@@ -15,7 +15,7 @@ def train_and_evaluate():
 
     # Split the dataset into training and testing sets
     # TODO: consider using cross-validation
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=8)
 
     # Standardize the features
     # TODO: consider better feature engineering
@@ -26,7 +26,7 @@ def train_and_evaluate():
     # Train a Support Vector Machine (SVM) model
     # TODO: consider using a different model
     # TODO: consider hyperparameter tuning
-    model = SVC(kernel='linear', random_state=42)
+    model = SVC(kernel='linear', random_state=8)
     model.fit(X_train, y_train)
 
     # Make predictions on the test set
