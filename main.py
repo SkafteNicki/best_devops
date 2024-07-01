@@ -5,7 +5,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
 
-def train_and_evaluate():
+def train_and_evaluate(model_name):
     # TODO: add arguments and argument parsing for high-level configuration
 
     # Load the dataset
@@ -15,6 +15,7 @@ def train_and_evaluate():
 
     # Split the dataset into training and testing sets
     # TODO: consider using cross-validation
+    # Split the dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # Standardize the features
@@ -26,7 +27,15 @@ def train_and_evaluate():
     # Train a Support Vector Machine (SVM) model
     # TODO: consider using a different model
     # TODO: consider hyperparameter tuning
-    model = SVC(kernel='linear', random_state=42)
+    if model_name == 'SVM':
+        model = SVC(kernel='linear', random_state=42)
+    elif model_name == 'RandomForest':
+        model = RandomForestClassifier(random_state=42)
+    elif model_name == 'KNN':
+        model = KNeighborsClassifier()
+    else:
+        raise ValueError(f"Model {model_name} is not supported.")
+    
     model.fit(X_train, y_train)
 
     # Make predictions on the test set
