@@ -12,6 +12,7 @@ def add(a: int | float | np.ndarray, b: int | float | np.ndarray) -> int | float
     return a + b
 
 print("SVM model")
+print("Hope it works")
 
 def train_and_evaluate():
     # TODO: add arguments and argument parsing for high-level configuration
