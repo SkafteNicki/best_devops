@@ -1,5 +1,6 @@
 from main import add
 import numpy as np
+import math
 
 def test_add():
     assert add(1, 2) == 3
@@ -7,5 +8,6 @@ def test_add():
     assert add(3, 4) == 7
     assert (add(np.array([1, 2]), np.array([3, 4])) == np.array([4, 6])).all()
     assert (add(np.array([1, 2]), 3) == np.array([4, 5])).all()
+    assert add(math.inf, 42) == math.inf
 
 # TODO: add more tests
