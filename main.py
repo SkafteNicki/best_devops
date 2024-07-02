@@ -6,6 +6,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
+from sklearn.feature_selection import SelectKBest, f_classif
 import numpy as np
 import argparse
 
@@ -32,6 +33,16 @@ def train_and_evaluate(test_size=0.2, use_cross_validation=False, model_type='sv
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
+    if use_poly_features:
+        poly = PolynomialFeatures(degree=degree)
+        X_train = poly.fit_transform(X_train)
+        X_test = poly.transform(X_test)
+
+    if use_feature_selection:
+        selector = SelectKBest(f_classif, k=k_best_feature)
+        X_train = selector.fit_transform(X_train, y_train)
+        X_test = selector.transform(X_test)
+
     if model_type == 'svm':
         model = SVC(kernel=kernel, random_state=42)
         if tune_hyperparameters:
@@ -44,7 +55,14 @@ def train_and_evaluate(test_size=0.2, use_cross_validation=False, model_type='sv
             model = GridSearchCV(RandomForestClassifier(), param_grid, refit=True, verbose=1)
     else:
         raise ValueError("Unsupported model type")
-    model.fit(X_train, y_train)
+
+
+    if use_cross_validation:
+        scores = cross_val_score(model, X_train, y_train, cv = 5)
+        print(f'Cross Validation accuracy: {scores.mean():.3f} +- {scores.std()():.3f}')
+        model.fit(X_train, y_train)
+    else:
+        model.fit(X_train, y_train)
 
     # Make predictions on the test set
     y_pred = model.predict(X_test)

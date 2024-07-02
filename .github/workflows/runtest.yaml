@@ -11,16 +11,19 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    # TODO: add more systems to test on
+
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11]  # Adjust versions based on availability and compatibility
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Set up Python 3.11
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11
-          # TODO: add more Python versions to test on
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
@@ -31,4 +34,7 @@ jobs:
         run: |
           pytest test_main.py
 
-      # TODO: add more steps to test other parts of the codebase
+      # Additional steps for testing other parts of the codebase
+      - name: Run additional tests
+        run: |
+          pytest tests/  # Replace with your actual test directory or command
