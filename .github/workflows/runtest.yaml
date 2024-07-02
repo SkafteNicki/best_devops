@@ -10,9 +10,12 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    #runs-on: [ubuntu-latest, windows-latest, macos-latest]
     # TODO: add more systems to test on
-
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v3
 
