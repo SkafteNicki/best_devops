@@ -4,14 +4,14 @@ on:
   push:
     branches:
       - main
+      - my-runner
   pull_request:
     branches:
       - main
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
-    # TODO: add more systems to test on
+    runs-on: [ubuntu-22.04, macos-14-large, windows-2022]
 
     steps:
       - uses: actions/checkout@v3
