@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest", "windows-latest", "macos-latest"]
-        python-version: [3.11, 3.12]
+        python-version: [3.10, 3.11, 3.12]
     # TODO: add more systems to test on
 
     steps:
@@ -30,9 +30,31 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install flake8 mypy bandit pytest-cov
 
       - name: Run tests
         run: |
-          pytest test_main.py
+          pytest --cov=main --cov-report=xml
+
+      - name: Run static code analysis with flake8
+        run: |
+          flake8 main.py test_main.py
+
+      - name: Run type checks with mypy
+        run: |
+          mypy main.py test_main.py
+
+      - name: Run security checks with bandit
+        run: |
+          bandit -r .
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: true
+          flags: unittests
+          name: codecov-umbrella
+          verbose: true
 
       # TODO: add more steps to test other parts of the codebase
