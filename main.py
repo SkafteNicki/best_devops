@@ -1,4 +1,4 @@
-# Import necessary libraries
+
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -46,6 +46,7 @@ def train_and_evaluate():
 
     print(f'Accuracy: {accuracy:.3f}')
     print('Classification Report:')
+    print('Hello')
     print('Hello, my name is Sandra.')
     print(report)
     return accuracy, report
