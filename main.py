@@ -1,11 +1,20 @@
-# Import necessary libraries
+
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
+import numpy as np
+import argparse
 
-def train_and_evaluate():
+def add(a: int | float | np.ndarray, b: int | float | np.ndarray) -> int | float | np.ndarray:
+    return a + b
+
+print("SVM model")
+
+def train_and_evaluate(test_size=0.2, use_cross_validation=False, cv_folds=5, model_type='svm', kernel='linear', C=1.0, gamma='scale', use_poly_features=False, degree=2, tune_hyperparameters=False, output_model='model.pkl', output_results='results.txt'):
     # TODO: add arguments and argument parsing for high-level configuration
 
     # Load the dataset
@@ -15,7 +24,7 @@ def train_and_evaluate():
 
     # Split the dataset into training and testing sets
     # TODO: consider using cross-validation
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=8)
 
     # Standardize the features
     # TODO: consider better feature engineering
@@ -23,10 +32,18 @@ def train_and_evaluate():
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-    # Train a Support Vector Machine (SVM) model
-    # TODO: consider using a different model
-    # TODO: consider hyperparameter tuning
-    model = SVC(kernel='linear', random_state=42)
+    if model_type == 'svm':
+        model = SVC(kernel=kernel, random_state=42)
+        if tune_hyperparameters:
+            param_grid = {'C': [0.1, 1, 10, 100], 'kernel': ['linear', 'rbf']}
+            model = GridSearchCV(SVC(), param_grid, refit=True, verbose=1)
+    elif model_type == 'random_forest':
+        model = RandomForestClassifier(random_state=42)
+        if tune_hyperparameters:
+            param_grid = {'n_estimators': [10, 50, 100], 'max_features': ['auto', 'sqrt', 'log2']}
+            model = GridSearchCV(RandomForestClassifier(), param_grid, refit=True, verbose=1)
+    else:
+        raise ValueError("Unsupported model type")
     model.fit(X_train, y_train)
 
     # Make predictions on the test set
@@ -36,12 +53,54 @@ def train_and_evaluate():
     # TODO: consider using more evaluation metrics
     accuracy = accuracy_score(y_test, y_pred)
     report = classification_report(y_test, y_pred)
+    print("HELLO SATANAS")
 
-    print(f'Accuracy: {accuracy:.2f}')
+    print(f'Accuracy: {accuracy:.3f}')
     print('Classification Report:')
     print('Hello, my name is Sandra.')
     print(report)
     return accuracy, report
 
 if __name__ == "__main__":
-    train_and_evaluate()
+    parser = argparse.ArgumentParser(description="Train and evaluate a machine learning model.")
+    
+    # Arguments for data configuration
+    parser.add_argument('--test_size', type=float, default=0.2, help='Proportion of the dataset to include in the test split.')
+    
+    # Cross-validation arguments
+    parser.add_argument('--use_cross_validation', action='store_true', help='Whether to use cross-validation.')
+    parser.add_argument('--cv_folds', type=int, default=5, help='Number of folds for cross-validation.')
+
+    # Model configuration arguments
+    parser.add_argument('--model_type', type=str, default='svm', choices=['svm', 'random_forest'], help='Type of model to use (e.g., "svm" or "random_forest").')
+    parser.add_argument('--kernel', type=str, default='linear', choices=['linear', 'rbf', 'poly'], help='Kernel type to be used in the SVM model.')
+    parser.add_argument('--C', type=float, default=1.0, help='Regularization parameter for the model.')
+    parser.add_argument('--gamma', type=str, default='scale', choices=['scale', 'auto'], help='Kernel coefficient for SVM.')
+    parser.add_argument('--use_poly_features', action='store_true', help='Whether to use polynomial features.')
+    parser.add_argument('--degree', type=int, default=2, help='Degree of polynomial features (ignored if use_poly_features is not set).')
+
+    # Hyperparameter tuning
+    parser.add_argument('--tune_hyperparameters', action='store_true', help='Whether to perform hyperparameter tuning.')
+
+    # Output files
+    parser.add_argument('--output_model', type=str, default='model.pkl', help='Path to save the trained model.')
+    parser.add_argument('--output_results', type=str, default='results.txt', help='Path to save the evaluation results.')
+
+    # Parse arguments
+    args = parser.parse_args()
+
+    # Call the train_and_evaluate function with arguments
+    train_and_evaluate(
+        test_size=args.test_size,
+        use_cross_validation=args.use_cross_validation,
+        cv_folds=args.cv_folds,
+        model_type=args.model_type,
+        kernel=args.kernel,
+        C=args.C,
+        gamma=args.gamma,
+        use_poly_features=args.use_poly_features,
+        degree=args.degree,
+        tune_hyperparameters=args.tune_hyperparameters,
+        output_model=args.output_model,
+        output_results=args.output_results
+    )
