@@ -1,6 +1,7 @@
 from main import add
 import numpy as np
 
+
 def test_add():
     # Test with integers
     assert add(1, 2) == 3
@@ -35,6 +36,7 @@ def test_add():
     # Test with mixed numpy arrays and scalars
     assert (add(np.array([1, 2]), np.array([3.0, 4.0])) == np.array([4.0, 6.0])).all()
     assert (add(np.array([1.0, 2.0]), 3) == np.array([4.0, 5.0])).all()
+
 
 # Run the tests
 if __name__ == "__main__":
