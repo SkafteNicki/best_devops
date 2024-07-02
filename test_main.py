@@ -9,7 +9,7 @@ def test_add():
     assert (add(np.array([1, 2]), 3) == np.array([4, 5])).all()
 
 # TODO: add more tests
-    assert add(9, 11) == -2
+    assert add(9, 11) == 20
     assert add(np.pi, np.pi) > 6
 
 def test_train_and_evaluate ():
