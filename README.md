@@ -34,5 +34,9 @@ TODO suggestions:
 * TODO: add `requirements.txt` file
 * TODO: add `pyproject.toml` file
 * TODO: include hyperparameters for the SVM
+* TODO: include hyperparameters for the SVM
 * TODO: add typing to the code
 * TODO: add logging of results to files
+
+My name id Giovano Giovani
+
