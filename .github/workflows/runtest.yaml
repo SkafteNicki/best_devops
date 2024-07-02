@@ -13,13 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     # TODO: add more systems to test on
 
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11]
+        system: [ubuntu-latest, macos-latest, windows-latest]
+
     steps:
       - uses: actions/checkout@v3
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11
+          python-version: ${{ matrix.python-version }}
           # TODO: add more Python versions to test on
 
       - name: Install dependencies
@@ -32,3 +37,6 @@ jobs:
           pytest test_main.py
 
       # TODO: add more steps to test other parts of the codebase
+      - name: Run additional tests
+        run: |
+          pytest tests/  # Replace with your actual test directory or command
