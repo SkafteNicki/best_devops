@@ -1,4 +1,5 @@
-from main import subtractInt
+from src.main import subtractInt
+import sys
 
 # TODO: add more tests
 def test_substractInt():

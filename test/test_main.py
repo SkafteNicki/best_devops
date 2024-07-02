@@ -1,4 +1,4 @@
-from main import add
+from src.main import add
 import numpy as np
 
 def test_add():
