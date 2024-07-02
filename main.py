@@ -3,7 +3,7 @@ from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 import numpy as np
@@ -52,6 +52,8 @@ def train_and_evaluate(test_size=0.2, use_cross_validation=False, model_type='sv
     # Evaluate the model
     # TODO: consider using more evaluation metrics
     accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
     report = classification_report(y_test, y_pred)
     print("HELLO SATANAS")
 
