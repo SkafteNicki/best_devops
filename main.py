@@ -8,10 +8,13 @@ from sklearn.model_selection import GridSearchCV
 import numpy as np
 import argparse
 
+
 def add(a: int | float | np.ndarray, b: int | float | np.ndarray) -> int | float | np.ndarray:
     return a + b
 
+
 print("SVM model")
+
 
 def train_and_evaluate(
     test_size=0.2, use_cross_validation=False, model_type='svm', kernel='linear',
@@ -79,6 +82,7 @@ def train_and_evaluate(
     print('Classification Report:')
     print(report)
     return accuracy, roc_auc, f1, report
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train and evaluate a machine learning model.")
