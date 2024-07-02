@@ -10,17 +10,21 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
-    # TODO: add more systems to test on
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+        # You can add more OS and Python versions if needed
+    runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
-      - name: Set up Python 3.11
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11
-          # TODO: add more Python versions to test on
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
@@ -32,3 +36,13 @@ jobs:
           pytest test_main.py
 
       # TODO: add more steps to test other parts of the codebase
+      # For example, linting, type checking, building, etc.
+      - name: Run linting
+        run: |
+          pip install flake8
+          flake8 your_module/
+
+      - name: Run type checking
+        run: |
+          pip install mypy
+          mypy your_module/
