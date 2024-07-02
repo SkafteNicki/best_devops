@@ -27,8 +27,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+     
+      - name: Run pre-commit hooks
+        run: | 
+          pip install pre-commit
+          pre-commit run --all-files
+
       - name: Run tests
         run: |
-          pytest test_main.py
+          pytest test/test_main.py
+
+      - name: Run substraction test
+        run: |
+          pytest test/test_sub.py
 
       # TODO: add more steps to test other parts of the codebase
+
+
+

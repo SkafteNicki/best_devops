@@ -1,4 +1,4 @@
-from main import add
+from src.main import add
 import numpy as np
 
 def test_add():
@@ -8,4 +8,3 @@ def test_add():
     assert (add(np.array([1, 2]), np.array([3, 4])) == np.array([4, 6])).all()
     assert (add(np.array([1, 2]), 3) == np.array([4, 5])).all()
 
-# TODO: add more tests
