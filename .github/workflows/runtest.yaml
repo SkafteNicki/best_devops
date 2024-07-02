@@ -29,10 +29,10 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/test_main.py
+          pytest test/test_main.py
 
       - name: Run substraction test
         run: | 
-          pytest tests/test_sub.py
+          pytest test/test_sub.py
 
       # TODO: add more steps to test other parts of the codebase
