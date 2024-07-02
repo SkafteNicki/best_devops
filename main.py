@@ -1,20 +1,21 @@
+
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
-import argparse
-import logging
-from typing import Tuple
 
-def train_and_evaluate(test_size: float, random_state: int, kernel: str) -> Tuple[float, str]:
+def train_and_evaluate():
+    # TODO: add arguments and argument parsing for high-level configuration
+
     # Load the dataset
     data = load_breast_cancer()
     X = data.data
     y = data.target
 
     # Split the dataset into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+    # TODO: consider using cross-validation
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # Standardize the features
     scaler = StandardScaler()
@@ -22,7 +23,9 @@ def train_and_evaluate(test_size: float, random_state: int, kernel: str) -> Tupl
     X_test = scaler.transform(X_test)
 
     # Train a Support Vector Machine (SVM) model
-    model = SVC(kernel=kernel, random_state=random_state)
+    # TODO: consider using a different model
+    # TODO: consider hyperparameter tuning
+    model = SVC(kernel='linear', random_state=42)
     model.fit(X_train, y_train)
 
     # Make predictions on the test set
@@ -31,12 +34,11 @@ def train_and_evaluate(test_size: float, random_state: int, kernel: str) -> Tupl
     # Evaluate the model
     accuracy = accuracy_score(y_test, y_pred)
     report = classification_report(y_test, y_pred)
+    print("HELLO SATANAS")
 
-    # Log results
-    logging.info(f'Accuracy: {accuracy:.2f}')
-    logging.info('Classification Report:')
-    logging.info(report)
-
+    print(f'Accuracy: {accuracy:.2f}')
+    print('Classification Report:')
+    print(report)
     return accuracy, report
 
 def main():
@@ -54,4 +56,4 @@ def main():
     train_and_evaluate(test_size=args.test_size, random_state=args.random_state, kernel=args.kernel)
 
 if __name__ == "__main__":
-    main()
+    train_and_evaluate()

@@ -1,5 +1,4 @@
-Requirements:
-1.
-2.
-3.
-...
+scikit-learn==1.4.0
+numpy
+pandas
+pytest>=7.4.3
