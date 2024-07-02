@@ -12,6 +12,10 @@ import argparse
 def add(a: int | float | np.ndarray, b: int | float | np.ndarray) -> int | float | np.ndarray:
     return a + b
 
+def subtractInt(a: int, b: int):
+    return a - b
+
+
 print("SVM model")
 
 def train_and_evaluate(test_size=0.2, use_cross_validation=False, model_type='svm', kernel='linear', use_poly_features=False, degree=2, tune_hyperparameters=False):

@@ -1,4 +1,5 @@
 from main import add
+from main import subtractInt
 import numpy as np
 
 def test_add():
@@ -9,3 +10,7 @@ def test_add():
     assert (add(np.array([1, 2]), 3) == np.array([4, 5])).all()
 
 # TODO: add more tests
+def test_substractInt():
+    assert subtractInt(5,2) == 3
+    assert subtractInt(2, 3) == -1
+    assert subtractInt(0,0) == 0
