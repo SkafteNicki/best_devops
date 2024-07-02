@@ -10,7 +10,7 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest, windows-latest
+    runs-on: [ubuntu-latest, windows-latest]
     # TODO: add more systems to test on
 
     steps:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python 3.11
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11, 3.8, 3.4
+          python-version: ["3.11","3.8","3.4"]
           # TODO: add more Python versions to test on
 
       - name: Install dependencies
